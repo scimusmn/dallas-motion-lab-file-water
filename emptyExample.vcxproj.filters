@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\testApp.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxDirList\src\ofxDirList.cpp">
+      <Filter>addons\ofxDirList\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dallasEng\dallasEng.cpp">
+      <Filter>dallasEng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxThread\src\ofxThread.cpp">
+      <Filter>ofxThread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\config.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxSystemCall\src\ofxThread.cpp">
+      <Filter>addons\ofSystemCall\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileWatcher.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPClient.cpp">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPManager.cpp">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxTCPServer.cpp">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxNetwork\src\ofxUDPManager.cpp">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileAlert.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\testApp.h" />
+    <ClInclude Include="..\..\..\addons\ofxDirList\src\ofxDirList.h">
+      <Filter>addons\ofxDirList\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dallasEng\dallasEng.h">
+      <Filter>dallasEng</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxThread\src\ofxThread.h">
+      <Filter>ofxThread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config.h" />
+    <ClInclude Include="..\..\..\addons\ofxSystemCall\src\ofxSystemCall.h">
+      <Filter>addons\ofSystemCall\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSystemCall\src\ofxThread.h">
+      <Filter>addons\ofSystemCall\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileWatcher.h" />
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxNetwork.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxUDPManager.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxNetworkUtils.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPClient.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPManager.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxNetwork\src\ofxTCPServer.h">
+      <Filter>addons\ofxNetwork\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fileAlert.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="addons">
+      <UniqueIdentifier>{af31f2a7-14d8-4645-b08d-007b3549deea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxDirList">
+      <UniqueIdentifier>{4e9392ca-a17e-4b59-9160-b41513ed3a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxDirList\src">
+      <UniqueIdentifier>{8c07d174-fd31-498d-8b73-5729c00b921b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dallasEng">
+      <UniqueIdentifier>{327ea944-7c35-42af-812c-580691c623fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ofxThread">
+      <UniqueIdentifier>{b94ae9c0-810d-4c98-a84a-2858dc091577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofSystemCall">
+      <UniqueIdentifier>{78f1ebbf-9363-4a50-96b3-7947035111ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofSystemCall\src">
+      <UniqueIdentifier>{a9fa8f82-196a-41f4-b482-7f7cbb5b6ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxNetwork">
+      <UniqueIdentifier>{6d51a596-6a14-42f2-9b29-492bf4fe5192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxNetwork\src">
+      <UniqueIdentifier>{86b1a2b7-c4ec-459e-9d51-d50df4263e45}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
