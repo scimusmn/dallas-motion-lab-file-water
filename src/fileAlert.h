@@ -9,14 +9,17 @@ class folderAlert {
 protected:
 	string dir;
 	string command;
+	string mapRoot;
 	string dest;
 	ofSystemCall call;
 	ofxTCPClient tcpClient;
 	ofxTCPServer tcpServer;
-	ofTimer connectTimer;
+	ofTimer connectTimer,
+		checkTimer;
 	bool bConnected;
 public:
 	void idle();
+	void checkConnection();
 	void setup();
 };
 

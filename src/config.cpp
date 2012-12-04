@@ -36,9 +36,16 @@ void configuration::readGeneralConfig(string cfgFile){
 			}
 			else if(token[0]=="SERVER_ADDRESS"){
 				serverAddress=token[1];
+				cout << serverAddress << endl;
 			}
 			else if(token[0]=="VERBOSE"){
 				verbose=ofToInt(token[1]);
+			}
+			else if(token[0]=="USER_NAME"){
+				userName=token[1];
+			}
+			else if(token[0]=="PASSWORD"){
+				password=token[1];
 			}
 		}
 	}

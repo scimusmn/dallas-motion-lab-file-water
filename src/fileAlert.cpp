@@ -10,29 +10,7 @@ folderAlert & alert()
 
 void folderAlert::idle()
 {
-	/*if(!bConnected){
-		if((bConnected=tcpClient.setup(cfg().serverAddress,11999))){
-			tcpClient.send("ping");
-			cout << "here" << endl;
-		}
-	}
-	else{
-		if(tcpClient.send("ping 2")){
-		/*string str=tcpClient.receive();
-		if(str.length()){
-			size_t it=command.find("$name");
-			string newCmd=command;
-			while(it!=string::npos){
-				newCmd=newCmd.replace(it,5,str);
-				it=command.find("$name",it+1);
-			}
-			//cout << newCmd<<endl;
-			//call.run(newCmd,true);
-		}
-		}
-		else bConnected=false;
-	}*/
-
+	//tcpClient.TCPClient.CheckHost()
 	if(tcpClient.isConnected()){
 		string str=tcpClient.receive();
 		string srcRoot,setName;
@@ -45,11 +23,12 @@ void folderAlert::idle()
 					if(cfg().verbose) cout << str << endl;
 					if(spl[0]=="root") srcRoot=spl[1];
 					else if(spl[0]=="set") setName=spl[1];
+					//else if(spl[0]=="map_root") mapRoot=spl[1];
 				}
 			}
 			string cmd=command;
 			cmd=cmd.replace(cmd.find("$dest"),5,dest);
-			cmd=cmd.replace(cmd.find("$src"),4,cfg().serverName+srcRoot);
+			cmd=cmd.replace(cmd.find("$src"),4,"Z:\\");
 			size_t it=cmd.find("$name");
 			while(it!=string::npos){
 				cmd=cmd.replace(it,5,setName);
@@ -73,18 +52,55 @@ void folderAlert::idle()
 			}
 
 			cout << "\nTransfer took " << cnt/10 <<"."<< cnt%10 <<" seconds"<< endl;
-			//cout << srcRoot << setName<< " >> " <<dest << setName;
 		}
-		
+		if(str=="<mapRequest>"){
+			while(str!="</mapRequest>"){
+				//cout << str << endl;
+				str=tcpClient.receive();
+				vector<string> spl=ofSplitString(str,"=");
+				if(spl.size()>1){
+					if(cfg().verbose) cout << str << endl;
+					if(spl[0]=="map_root"){
+						mapRoot=spl[1];
+						string netUse="net use Z: " + cfg().serverName + mapRoot.substr(0,mapRoot.length()-1) + " " + cfg().password + " /user:" + cfg().userName;
+						call.run(netUse);
+						cout << "Mapping network drive...";
+						while(call.isRunning()){
+							ofTimer runTime;
+							runTime.set(.1);
+							runTime.run();
+							if(runTime.justExpired()){
+								cout << ".";
+								runTime.set(.1);
+								runTime.run();
+							}
+						}
+						cout << "\nMapped " + cfg().serverName + mapRoot + " to Z:\\" << endl;
+					}
+				}
+			}
+		}
 	}
 	else {
+		bConnected=false;
+		//tcpClient.close();
 		if(connectTimer.justExpired()){
 			if((bConnected=tcpClient.setup(cfg().serverAddress,cfg().serverPort))){
-				tcpClient.send("connected");
+				tcpClient.send("<mapRequest />");
+				cout << "Connected to TCP server" << endl;
+				checkTimer.set(1), checkTimer.run();
+				connectTimer.set(1),connectTimer.run();
 			}
 			else connectTimer.set(1),connectTimer.run();
 		}
 		
+	}
+	if(checkTimer.justExpired()){
+		if(tcpClient.isConnected()&&tcpClient.send("<connectTest />")==false){
+			tcpClient.close();
+			connectTimer.set(1),connectTimer.run();
+		}
+		checkTimer.set(1), checkTimer.run();
 	}
 }
 
@@ -95,6 +111,8 @@ void folderAlert::setup()
 	command=cfg().command;
 	dest=cfg().dest;
 	bConnected=false;
+
+	//string netUse="net use Z: " + cfg().serverName + " ";
 	//command=command.replace(command.find("$dest"),5,dest);
 	//command=command.replace(command.find("$src"),4,dir);
 
@@ -104,11 +122,13 @@ void folderAlert::setup()
 	//tcpClient.setMessageDelimiter("\n");
 
 	if(tcpClient.isConnected()){
-		tcpClient.send("connected");
+		tcpClient.send("<mapRequest />");
+		cout << "Connected to TCP server" << endl;
+		checkTimer.set(1), checkTimer.run();
 		//string str=tcpClient.receive();
 	}
 	
 	connectTimer.set(1),connectTimer.run();
 
-	tcpClient.setVerbose(false);
+	//tcpClient.setVerbose(false);
 }

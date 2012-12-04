@@ -13,6 +13,8 @@ struct configuration {
 	double waitTime;
 	string serverAddress;
 	string serverName;
+	string userName;
+	string password;
 	bool verbose;
 	int serverPort;
 	void readGeneralConfig(string cfgFile);
